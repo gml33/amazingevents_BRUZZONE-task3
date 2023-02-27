@@ -176,21 +176,21 @@ const data = {
   function cards(array, containerCard){
     for(let event of array.events){
       let div = document.createElement("div");
-      div.className = "cardDiv"
-      div.innerHTML += `
-      <div class="card" data-aos="fade-up"
-      data-aos-easing="ease-out-cubic"
-      data-aos-duration="1000" style="width: 18rem;">
-      <img src="${event.image}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">${event.description}</p>
-      </div>
-      <div class="card-footer">
-        Price ${event.price}
-        <a href="./details.html" class="btn btn-primary">details</a>
-      </div>
-    </div>
-      `
+      div.className = "cards"
+      div.innerHTML += `<div class="tarjeta">
+                          <div class="img_tarjeta ad4" >
+                          </div>
+                          <div class="cuerpo_tarjeta">
+                            <h3>${event.name}</h3>
+                            <p>${event.description}</p>
+                            <div class="precio_tarjeta">
+                              <p>Price: ${event.price}</p>
+                              <div class="boton_tarjeta">
+                                <a class="btn btn-primary" href="./assets/pages/details.html">More</a>
+                              </div>
+                            </div>                    
+                          </div>
+                        </div>`
       fragmento.appendChild(div);
     }
     containerCard.appendChild(fragmento);
