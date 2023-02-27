@@ -175,23 +175,23 @@ const data = {
   let fragmento = document.createDocumentFragment();
   function cards(array, containerCard) {
     for (let event of array.events) {
-      if (event.date <= array.currentDate) {
+      if (event.date >= array.currentDate) {
         let div = document.createElement("div");
         div.className = "cardDiv";
-        div.innerHTML += `
-      <div class="card" data-aos="fade-up"
-      data-aos-easing="ease-out-cubic"
-      data-aos-duration="1000" style="width: 18rem;">
-      <img src="${event.image}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">${event.description}</p>
-      </div>
-      <div class="card-footer">
-        Price ${event.price}
-        <a href="./details.html" class="btn btn-primary">details</a>
-      </div>
-    </div>
-      `;
+        div.innerHTML += `<div class="tarjeta">
+        <div class="img_tarjeta ad" style="background-image: url(${event.image})" >
+        </div>
+        <div class="cuerpo_tarjeta">
+          <h3>${event.name}</h3>
+          <p>${event.description}</p>
+          <div class="precio_tarjeta">
+            <p>Price: ${event.price}</p>
+            <div class="boton_tarjeta">
+              <a class="btn btn-primary" href="./assets/pages/details.html">More</a>
+            </div>
+          </div>                    
+        </div>
+      </div>`;
         fragmento.appendChild(div);
       }
     }

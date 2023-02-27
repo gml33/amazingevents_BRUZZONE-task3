@@ -139,8 +139,7 @@
     color: white;
 }
 
-.ad1{
-    background-image: url(../img/Marathon.jpg);
+.ad{
     background-position: center center;
     background-repeat:no-repeat;
     background-size:cover;

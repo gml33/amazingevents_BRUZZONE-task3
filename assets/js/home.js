@@ -178,7 +178,7 @@ const data = {
       let div = document.createElement("div");
       div.className = "cards"
       div.innerHTML += `<div class="tarjeta">
-                          <div class="img_tarjeta ad4" >
+                          <div class="img_tarjeta ad" style="background-image: url(${event.image})" >
                           </div>
                           <div class="cuerpo_tarjeta">
                             <h3>${event.name}</h3>
