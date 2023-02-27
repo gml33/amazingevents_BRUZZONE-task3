@@ -186,7 +186,7 @@ const data = {
                             <div class="precio_tarjeta">
                               <p>Price: ${event.price}</p>
                               <div class="boton_tarjeta">
-                                <a class="btn btn-primary" href="./assets/pages/details.html">More</a>
+                                <a class="btn btn-primary" href="./pages/details.html">More</a>
                               </div>
                             </div>                    
                           </div>
