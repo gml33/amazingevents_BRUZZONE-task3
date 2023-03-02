@@ -173,7 +173,7 @@ const data = {
   }
 
 
-/*funcion para crear las cards desde el Json*/
+/*funcion para crear las cards desde el array que le mande*/
   let fragmento = document.createDocumentFragment();
   function cards(array, containerCard){
     containerCard.innerHTML=''
@@ -210,7 +210,8 @@ function createCategories(array){
   }
   return categorias;
 }
-/*funcion para crear los checkboxes desde el Json*/
+
+/*funcion para crear los checkboxes desde las categorias recien obtenidas*/
 let fragmento1 = document.createDocumentFragment();
 function checkBoxes(data, containerCheckBoxes){
   let i=0;  
@@ -227,14 +228,6 @@ function checkBoxes(data, containerCheckBoxes){
   containerCheckBoxes.appendChild(fragmento1);
 }
 
-/*agregar un eventListener a cada checkbox desde el elemento padre y obtener su estado*/
-let containerCheckBoxes = document.getElementById('containerCheckBoxes')
-containerCheckBoxes.addEventListener('click',(e)=>{
-  console.log(e.target);
-});
-
-
-
 /*agregar un eventListener a la busqueda asi se filtra por categoria*/
 datafiltrada = [];
 let buscador = document.querySelector('input[placeholder="Search"]')
@@ -248,8 +241,22 @@ buscador.addEventListener('keyup',(e)=>{
   cards(datafiltrada,containerCard);
 });
 
+/*agregar un eventListener a cada checkbox desde el elemento padre y obtener su estado*/
+let containerCheckBoxes = document.getElementById('containerCheckBoxes')
+datafiltrada = [];
+containerCheckBoxes.addEventListener('click',(e)=>{
+  datafiltrada = [];
+  console.log(e);  
+  data.events.forEach(element => {    
+    if(element.category.toLowerCase().includes(e.target.defaultValue.toLowerCase())){
+      datafiltrada.push(element);
+    }
+  })
+  cards(datafiltrada,containerCard);
+});
 
-/*cards(datafiltrada,containerCard);*/
+
+cards(data.events,containerCard);
 checkBoxes(data, containerCheckBoxes);
 
 
