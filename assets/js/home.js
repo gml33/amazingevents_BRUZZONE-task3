@@ -176,35 +176,27 @@ const data = {
 /*funcion para crear las cards desde el Json*/
   let fragmento = document.createDocumentFragment();
   function cards(array, containerCard){
-    let cardDiv= document.getElementsByClassName('tarjeta')
-    console.log(cardDiv)
-    if(cardDiv.length=0){
-      for(let evento of array){      
-        let div = document.createElement("div");
-        div.className = "cards"
-        div.innerHTML=''       
-        div.id = `${evento.name}`
-        div.innerHTML += `<div class="tarjeta">
-                            <div class="img_tarjeta ad" style="background-image: url(${evento.image})" >
+    containerCard.innerHTML=''
+    for(let evento of array){
+      let div = document.createElement("div");
+      div.className = "tarjeta"
+      div.id = `${evento.name}`
+      div.innerHTML += `<div class="img_tarjeta ad" style="background-image: url(${evento.image})" >
+                          </div>
+                          <div class="cuerpo_tarjeta">
+                            <h3>${evento.name}</h3>
+                            <p>${evento.description}</p>
+                            <div class="precio_tarjeta">
+                              <p>Price: ${evento.price}U$D</p>
+                              <div class="boton_tarjeta">
+                                <a class="btn btn-primary" href="./pages/details.html">More</a>
                               </div>
-                              <div class="cuerpo_tarjeta">
-                                <h3>${evento.name}</h3>
-                                <p>${evento.description}</p>
-                                <div class="precio_tarjeta">
-                                  <p>Price: ${evento.price}</p>
-                                  <div class="boton_tarjeta">
-                                    <a class="btn btn-primary" href="./pages/details.html">More</a>
-                                  </div>
-                                </div>                    
-                              </div>
-                            </div>`
-          fragmento.appendChild(div);
-      }
-      containerCard.appendChild(fragmento);
+                            </div>                    
+                          </div>
+                        </div>`
+        fragmento.appendChild(div);
     }
-    else{
-      cardDiv.innerHTML=''
-    }
+    containerCard.appendChild(fragmento);
   }
 
   /*funcion para crear las categorias de los checkboxes desde el Json*/
@@ -250,12 +242,12 @@ buscador.addEventListener('keyup',(e)=>{
   datafiltrada = [];
   data.events.forEach(element => {    
     if(element.category.toLowerCase().includes(buscador.value.toLowerCase())){
-      console.log(element.category.toLowerCase())  
       datafiltrada.push(element);
     }
   })
   cards(datafiltrada,containerCard);
 });
+
 
 /*cards(datafiltrada,containerCard);*/
 checkBoxes(data, containerCheckBoxes);
