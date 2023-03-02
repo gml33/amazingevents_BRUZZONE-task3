@@ -172,28 +172,92 @@ const data = {
     ]
   }
 
+
+/*funcion para crear las cards desde el Json*/
   let fragmento = document.createDocumentFragment();
   function cards(array, containerCard){
-    for(let event of array.events){
-      let div = document.createElement("div");
-      div.className = "cards"
-      div.innerHTML += `<div class="tarjeta">
-                          <div class="img_tarjeta ad" style="background-image: url(${event.image})" >
-                          </div>
-                          <div class="cuerpo_tarjeta">
-                            <h3>${event.name}</h3>
-                            <p>${event.description}</p>
-                            <div class="precio_tarjeta">
-                              <p>Price: ${event.price}</p>
-                              <div class="boton_tarjeta">
-                                <a class="btn btn-primary" href="./pages/details.html">More</a>
+    let cardDiv= document.getElementsByClassName('tarjeta')
+    console.log(cardDiv)
+    if(cardDiv.length=0){
+      for(let evento of array){      
+        let div = document.createElement("div");
+        div.className = "cards"
+        div.innerHTML=''       
+        div.id = `${evento.name}`
+        div.innerHTML += `<div class="tarjeta">
+                            <div class="img_tarjeta ad" style="background-image: url(${evento.image})" >
                               </div>
-                            </div>                    
-                          </div>
-                        </div>`
-      fragmento.appendChild(div);
+                              <div class="cuerpo_tarjeta">
+                                <h3>${evento.name}</h3>
+                                <p>${evento.description}</p>
+                                <div class="precio_tarjeta">
+                                  <p>Price: ${evento.price}</p>
+                                  <div class="boton_tarjeta">
+                                    <a class="btn btn-primary" href="./pages/details.html">More</a>
+                                  </div>
+                                </div>                    
+                              </div>
+                            </div>`
+          fragmento.appendChild(div);
+      }
+      containerCard.appendChild(fragmento);
     }
-    containerCard.appendChild(fragmento);
+    else{
+      cardDiv.innerHTML=''
+    }
   }
-  cards(data,containerCard);
+
+  /*funcion para crear las categorias de los checkboxes desde el Json*/
+function createCategories(array){
+  categorias = [];
+  for(i=0;i<array.events.length;i++){
+    elemento = array.events[i].category;
+    if(!categorias.includes(elemento)){
+      categorias.push(elemento)
+    }    
+  }
+  return categorias;
+}
+/*funcion para crear los checkboxes desde el Json*/
+let fragmento1 = document.createDocumentFragment();
+function checkBoxes(data, containerCheckBoxes){
+  let i=0;  
+  for(let category of createCategories(data)){
+    let div = document.createElement("div");
+    div.className = "formulario_1"
+    div.innerHTML += `<div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${category}" id="flexCheckDefault${i}">
+                        <label class="form-check-label" for="flexCheckDefault${i}">${category}</label>
+                      </div>`
+    fragmento1.appendChild(div);
+    i++;
+  }
+  containerCheckBoxes.appendChild(fragmento1);
+}
+
+/*agregar un eventListener a cada checkbox desde el elemento padre y obtener su estado*/
+let containerCheckBoxes = document.getElementById('containerCheckBoxes')
+containerCheckBoxes.addEventListener('click',(e)=>{
+  console.log(e.target);
+});
+
+
+
+/*agregar un eventListener a la busqueda asi se filtra por categoria*/
+datafiltrada = [];
+let buscador = document.querySelector('input[placeholder="Search"]')
+buscador.addEventListener('keyup',(e)=>{
+  datafiltrada = [];
+  data.events.forEach(element => {    
+    if(element.category.toLowerCase().includes(buscador.value.toLowerCase())){
+      console.log(element.category.toLowerCase())  
+      datafiltrada.push(element);
+    }
+  })
+  cards(datafiltrada,containerCard);
+});
+
+/*cards(datafiltrada,containerCard);*/
+checkBoxes(data, containerCheckBoxes);
+
 
