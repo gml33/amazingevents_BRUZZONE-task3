@@ -259,4 +259,3 @@ containerCheckBoxes.addEventListener('click',(e)=>{
 cards(data.events,containerCard);
 checkBoxes(data, containerCheckBoxes);
 
-
