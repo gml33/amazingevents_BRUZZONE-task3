@@ -162,3 +162,10 @@
     background-repeat:no-repeat;
     background-size:cover;
 }
+.no_hay_un_porongo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
