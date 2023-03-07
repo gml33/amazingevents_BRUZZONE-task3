@@ -225,6 +225,8 @@ function crearCheckBoxes(array, containerCheckBoxes){
   containerCheckBoxes.appendChild(fragmento1);
 }
 
+
+/*Funcion para mostrar un mensaje cuando la busqueda no arroja resultados*/
 let fragmento2 = document.createDocumentFragment();
 function mensaje(containerCard){
   let div = document.createElement("div");
