@@ -77,10 +77,11 @@
     flex-wrap: wrap;
 }
 .imagen_detalle>img{
-    box-shadow: 1px;
+    box-shadow: 1px 1px;
     border: 1px solid gray;
     border-radius: 5%;
     margin: 1%;
+    max-width: 278px;
 }
 .detalle_evento{
     border: 1px solid gray;
