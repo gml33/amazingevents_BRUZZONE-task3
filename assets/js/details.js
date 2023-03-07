@@ -4,7 +4,6 @@ const queryString = location.search
 const params = new URLSearchParams(queryString)
 const eventID = params.get('id')
 const event = data.events.find( element => element._id == eventID )
-console.log(event);
 
 
 
@@ -31,3 +30,4 @@ function detalleEvento(array, containerEvento){
 }
     
 detalleEvento(event, eventDetail)
+
