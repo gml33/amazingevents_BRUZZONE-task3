@@ -88,7 +88,7 @@ let checkBoxes = document.querySelectorAll('input[name="category"]')
 checkBoxes.forEach((checkbox)=>{
   checkbox.checked = false;
 })
-datafiltrada = [];
+let datafiltrada = [];
 data.events.forEach(element => {    
   if(element.category.toLowerCase().includes(buscador.value.toLowerCase())){
     datafiltrada.push(element);
