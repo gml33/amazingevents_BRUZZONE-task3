@@ -121,11 +121,15 @@ buscador.addEventListener('input',()=>{
   let datafiltrada = [];
   let elementos=[];
   let listaChecked = [];
+  let datos = data.events;
   listaChecked = document.querySelectorAll('input[name="category"]:checked')  
   listaChecked.forEach((item)=>{    
     elementos.push(item.defaultValue)
   })
-  datos = filtroArray(data.events, elementos)
+  if(listaChecked.length>0){
+    datos = filtroArray(data.events, elementos)
+  }
+  console.log(datos);
   datos.forEach(element => {    
     if(element.name.toLowerCase().includes(buscador.value.toLowerCase())){
       datafiltrada.push(element);
@@ -135,8 +139,7 @@ buscador.addEventListener('input',()=>{
     /*Mostrar tarjeta o mensaje que no hay un carajo*/
     crearCards([],containerCard);
     mensaje(containerCard)
-  }else{
-    crearCards([],containerCard);
+  }else{    
     crearCards(datafiltrada,containerCard);
   }
 });
