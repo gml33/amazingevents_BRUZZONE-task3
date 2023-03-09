@@ -114,10 +114,10 @@ function mensaje(containerCard){
 
 
 
-/*Arreglar el buscasor para que busque sin tener checkboxes activos.*/
+
 /*agregar un eventListener a la busqueda asi se filtra por categoria*/
 let buscador = document.querySelector('input[placeholder="Search"]')
-buscador.addEventListener('keyup',()=>{
+buscador.addEventListener('input',()=>{
   let datafiltrada = [];
   let elementos=[];
   let listaChecked = [];
@@ -140,3 +140,5 @@ buscador.addEventListener('keyup',()=>{
     crearCards(datafiltrada,containerCard);
   }
 });
+
+/*Arreglar el buscasor para que busque sin tener checkboxes activos.*/
